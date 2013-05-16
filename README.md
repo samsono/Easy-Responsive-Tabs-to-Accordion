@@ -1,7 +1,7 @@
 Easy Responsive Tabs to Accordion
 =================================
 
-Easy responsive tabs - is a lightweight jQuery plugin which optimizes normal horizontal or vertical tabs to accordion on multi devices like: web, tablets, Mobile (IPad &amp; IPhone). This plugin adapts the screen size and changes its action accordingly.
+Easy responsive tabs - is a lightweight jQuery plugin which optimizes normal horizontal or vertical tabs to accordion on multi devices like: web, tablets, Mobile (IPad &amp; IPhone). This plugin adapts the screen size and changes its form accordingly.
 
 
 Features
@@ -22,9 +22,9 @@ http://webtrendset.com/demo/easy-responsive-tabs/Index.html
 How to use
 ==========
 
-Add jQuery file (minimum jQuery-1.5.1.min.js)
-Included easyResponsiveTabs.js
-Include the css from responsive-tabs.css
+=> Included jQuery file (minimum jQuery-1.5.1.min.js)
+=> Included easyResponsiveTabs.js
+=> Include responsive-tabs.css
 
 => Here is the Markup for Tabs structure:
 
@@ -57,5 +57,5 @@ Include the css from responsive-tabs.css
 
 For any support
 ===============
-Name: samson 
+Samson 
 Email: samson3d@gmail.com
