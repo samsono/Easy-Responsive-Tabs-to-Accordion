@@ -12,7 +12,8 @@
         "ui"
     ],
     "author": {
-        "name": "Samson Onna",
+        "name": "Samson Onna",        
+        "email": "samson3d@gmail.com",
         "url": "https://github.com/samsono"
     },
     "licenses": [
@@ -26,6 +27,6 @@
     "demo": "http://webtrendset.com/demo/easy-responsive-tabs/Index.html",
     "download": "https://github.com/samsono/Easy-Responsive-Tabs-to-Accordion/archive/master.zip",
     "dependencies": {
-        "jquery": ">=1.5.1"
+        "jquery": ">1.5"
     }
 }
