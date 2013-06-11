@@ -38,7 +38,7 @@
                     }
                 }
 
-                //Assigning the h2 markup
+                //Assigning the h2 markup to accordion title
                 var $tabItemh2;
                 $respTabs.find('.resp-tab-content').before("<h2 class='resp-accordion' role='tab'><span class='resp-arrow'></span></h2>");
 
