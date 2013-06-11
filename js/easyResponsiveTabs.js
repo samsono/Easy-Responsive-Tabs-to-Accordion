@@ -45,7 +45,7 @@
                 var itemCount = 0;
                 $respTabs.find('.resp-accordion').each(function () {
                     $tabItemh2 = $(this);
-                    var innertext = $respTabs.find('.resp-tab-item:eq(' + itemCount + ')').text();
+                    var innertext = $respTabs.find('.resp-tab-item:eq(' + itemCount + ')').html();
                     $respTabs.find('.resp-accordion:eq(' + itemCount + ')').append(innertext);
                     $tabItemh2.attr('aria-controls', 'tab_item-' + (itemCount));
                     itemCount++;
