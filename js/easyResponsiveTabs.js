@@ -7,6 +7,7 @@
             var defaults = {
                 type: 'default', //default, vertical, accordion;
                 width: 'auto',
+                tabsCanToggle: false,
                 fit: true
             }
             //Variables
@@ -92,6 +93,9 @@
                             $respTabs.find("[aria-controls=" + $tabAria + "]").addClass('resp-tab-active');
 
                             $respTabs.find('.resp-tab-content[aria-labelledby = ' + $tabAria + ']').slideDown().addClass('resp-tab-content-active');
+                        } else if ($currentTab.hasClass('resp-tab-item resp-tab-active') && options.tabsCanToggle) {
+                            $respTabs.find('.resp-tab-active').removeClass('resp-tab-active');
+                            $respTabs.find('.resp-tab-content-active').removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');
                         } else {
                             $respTabs.find('.resp-tab-active').removeClass('resp-tab-active');
                             $respTabs.find('.resp-tab-content-active').removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');

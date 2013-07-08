@@ -51,6 +51,7 @@ How to use
         $("#demoTab").easyResponsiveTabs({
             type: 'default', //Types: default, vertical, accordion           
             width: 'auto', //auto or any custom width
+            tabsCanToggle: false, //Clicking an active tab deactivates it
             fit: true   // 100% fits in a container
         });
 
