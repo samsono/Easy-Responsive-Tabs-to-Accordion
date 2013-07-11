@@ -1,0 +1,38 @@
+// Easy Responsive Tabs to Accordion
+//
+// ====== Variables ======
+
+// Config
+$use-horizontal-tabs: true !default;
+$use-vertical-tabs: true !default;
+$use-accordion: true !default; // be sure to remove excess markup if not using
+
+// Typography
+$tab-font-weight: 600 !default;
+$tab-font-size: 13px !default;
+
+// Colors
+$brand-pri-color: #c1c1c1;
+$brand-sec-color: #DBDBDB;
+
+// Borders
+$border-width: 1px !default;
+$border-type: solid !default;
+$border-color: $brand-pri-color;
+
+// Border Radius
+$border-radius: 4px !default;
+
+// Tabs
+$active-tab-color: #fff;
+$tab-container-color: #fff;
+
+// Padding
+$content-padding: 15px !default;
+
+// Accordion Arrows
+$arrow-size: 12px !default;
+
+// Media Query Breakpoint
+$mq-type: max-width;
+$mq-breakpoint: 768px;

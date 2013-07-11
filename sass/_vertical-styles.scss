@@ -1,0 +1,63 @@
+@if $use-vertical-tabs == true{
+// Easy Responsive Tabs to Accordion
+//
+// ====== Vertical Tab Styles ======
+
+/*-----------Vertical tabs-----------*/
+.resp-vtabs {
+
+	.resp-tab-item {
+
+		&.resp-tab-active {
+			@include common-border;
+		    border-right: none;
+		    background-color: $active-tab-color;
+		    position: relative;
+		    z-index: 1;
+		    margin-right: -1px !important;
+		    padding: 14px 15px 15px 14px !important;
+		}
+	}
+
+	.resp-tabs-list {
+	    float: left;
+	    width: 30%;
+
+	    > li {
+		    display: block;
+		    padding: 15px !important;
+		    float: none;
+		}
+	}
+
+	.resp-tabs-container {
+		@include common-border;
+	    float: left;
+	    width: 68%;
+	    min-height: 250px;
+	    border-radius: $border-radius;
+	    clear: none;
+	    @include breakpoint(mq-breakpoint){
+			border: none;
+	        float: none;
+	        width: 100%;
+	        min-height: initial;
+	        clear: none;
+		}
+	}
+
+	.resp-tab-content {
+	    border: none;
+	    @include breakpoint(mq-breakpoint){
+			@include common-border;
+		}
+
+		&:last-child{
+			@include breakpoint(mq-breakpoint){
+				border-bottom: $border-width $border-type $border-color !important;
+			}
+		}
+	}
+}
+
+} // end if

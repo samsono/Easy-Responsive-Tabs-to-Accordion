@@ -1,0 +1,29 @@
+/*!
+*
+* easyResponsiveTabs.js by Samson Onna 
+*
+* https://github.com/samsono/Easy-Responsive-Tabs-to-Accordion 
+*
+*/
+
+// Easy Responsive Tabs to Accordion
+
+// ====== Import All Styles ======
+
+// Set the configuration and styles
+@import "variables";
+
+// Mixins utilities
+@import "utility";
+
+// Base tab styles used by all tab types
+@import "base";
+
+// Horizontal tab specific styles
+@import "horizontal-tabs";
+
+// Vertical tab specific styles
+@import "vertical-styles";
+
+// Accordion specific styles
+@import "accordion-styles";
