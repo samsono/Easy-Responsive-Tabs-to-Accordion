@@ -7,11 +7,19 @@
             var defaults = {
                 type: 'default', //default, vertical, accordion;
                 width: 'auto',
-                fit: true
+                fit: true,
+                activate: ''
             }
             //Variables
             var options = $.extend(defaults, options);            
             var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical', accord = 'accordion';
+
+            //Events
+            $(this).bind('tabactivate', function(e, currentTab) {
+                if(typeof options.activate === 'function') {
+                    options.activate.call(currentTab, e)
+                }
+            });
 
             //Main function
             this.each(function () {
@@ -98,6 +106,8 @@
                             $respTabs.find("[aria-controls=" + $tabAria + "]").addClass('resp-tab-active');
                             $respTabs.find('.resp-tab-content[aria-labelledby = ' + $tabAria + ']').addClass('resp-tab-content-active').attr('style', 'display:block');
                         }
+                        //Trigger tab activation event
+                        $currentTab.trigger('tabactivate', $currentTab);
                     });
                     //Window resize function                   
                     $(window).resize(function () {
