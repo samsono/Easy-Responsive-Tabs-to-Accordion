@@ -8,7 +8,8 @@
                 type: 'default', //default, vertical, accordion;
                 width: 'auto',
                 fit: true,
-                activate: ''
+                closed: false,
+                activate: function(){}
             }
             //Variables
             var options = $.extend(defaults, options);            
@@ -24,6 +25,7 @@
             //Main function
             this.each(function () {
                 var $respTabs = $(this);
+                var $respTabsList = $respTabs.find('ul.resp-tabs-list');
                 $respTabs.find('ul.resp-tabs-list li').addClass('resp-tab-item');
                 $respTabs.css({
                     'display': 'block',
@@ -67,10 +69,12 @@
                     $tabItem.attr('aria-controls', 'tab_item-' + (count));
                     $tabItem.attr('role', 'tab');
 
-                    //First active tab                   
-                    $respTabs.find('.resp-tab-item').first().addClass('resp-tab-active');
-                    $respTabs.find('.resp-accordion').first().addClass('resp-tab-active');
-                    $respTabs.find('.resp-tab-content').first().addClass('resp-tab-content-active').attr('style', 'display:block');
+                    //First active tab, keep closed if option = 'closed' or option is 'accordion' and the element is in accordion mode 
+                    if(options.closed !== true && !(options.closed === 'accordion' && !$respTabsList.is(':visible')) && !(options.closed === 'tabs' && $respTabsList.is(':visible'))) {                  
+                        $respTabs.find('.resp-tab-item').first().addClass('resp-tab-active');
+                        $respTabs.find('.resp-accordion').first().addClass('resp-tab-active');
+                        $respTabs.find('.resp-tab-content').first().addClass('resp-tab-content-active').attr('style', 'display:block');
+                    }
 
                     //Assigning the 'aria-labelledby' attr to tab-content
                     var tabcount = 0;
