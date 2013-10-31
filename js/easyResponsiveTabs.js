@@ -14,7 +14,9 @@
             //Variables
             var options = $.extend(defaults, options);            
             var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical', accord = 'accordion';
-
+            var hash = window.location.hash;
+            var historyApi = !!(window.history && history.replaceState);
+            
             //Events
             $(this).bind('tabactivate', function(e, currentTab) {
                 if(typeof options.activate === 'function') {
@@ -26,6 +28,7 @@
             this.each(function () {
                 var $respTabs = $(this);
                 var $respTabsList = $respTabs.find('ul.resp-tabs-list');
+                var respTabsId = $respTabs.attr('id');
                 $respTabs.find('ul.resp-tabs-list li').addClass('resp-tab-item');
                 $respTabs.css({
                     'display': 'block',
@@ -112,6 +115,11 @@
                         }
                         //Trigger tab activation event
                         $currentTab.trigger('tabactivate', $currentTab);
+                        
+                        //Update Browser History
+                        if(historyApi) {
+                            history.replaceState(null,null,'#'+respTabsId+(parseInt($tabAria.substring(9))+1).toString());
+                        }
                     });
                     //Window resize function                   
                     $(window).resize(function () {
