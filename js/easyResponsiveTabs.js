@@ -82,11 +82,16 @@
                     count++;
                 });
                 
-                //Determine what tab to show
+                // Show correct content area
                 var tabNum = 0;
-                if (hash.indexOf(respTabsId)>-1) {
-                    tabNum = ((hash.replace('#'+respTabsId,''))*1)-1;
-                    tabNum = tabNum > -1 && tabNum < count+1 ? tabNum : 0;
+                if(hash!='') {
+                    var matches = hash.match(new RegExp(respTabsId+"([0-9]+)"));
+                    if (matches!==null && matches.length===2) {
+                        tabNum = parseInt(matches[1],10)-1;
+                        if (tabNum > count) {
+                            tabNum = 0;
+                        }
+                    }
                 }
 
                 //Active correct tab
@@ -131,7 +136,22 @@
                         
                         //Update Browser History
                         if(historyApi) {
-                            history.replaceState(null,null,'#'+respTabsId+(parseInt($tabAria.substring(9))+1).toString());
+                            var currentHash = window.location.hash;
+                            var newHash = respTabsId+(parseInt($tabAria.substring(9),10)+1).toString();
+                            if (currentHash!="") {
+                                var re = new RegExp(respTabsId+"[0-9]+");
+                                if (currentHash.match(re)!=null) {                                    
+                                    newHash = currentHash.replace(re,newHash);
+                                }
+                                else {
+                                    newHash = currentHash+"|"+newHash;
+                                }
+                            }
+                            else {
+                                newHash = '#'+newHash;
+                            }
+                            
+                            history.replaceState(null,null,newHash);
                         }
                     });
                     //Window resize function                   
