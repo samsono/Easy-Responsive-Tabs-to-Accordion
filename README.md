@@ -12,6 +12,8 @@ Features
 + Supports multiple sets of tabs on same page
 + Cross browser compatibility (IE7+, Chrome, Firefox, Safari and Opera)
 + Multi device support (Web, Tablets & Mobile)
++ Link directly to specified tab (works with multiple instances)
++ Maintains state of tabs when navigating away from page and then returning using back or forward (if browser supports the History API)
 
 Demo
 ====
@@ -56,6 +58,14 @@ How to use
             activate: function() {}  // Callback function, gets called if tab is switched
         });
 
+=> Linking to Tabs:
+        
+        http://yoursite.com/tabs.html#{TAB ID}{TAB NUM}
+        http://yoursite.com/tabs.html#demoTab2
+        
+        Multiple Instances:
+        http://yoursite.com/tabs.html#{TAB ID 1}{TAB NUM}|{TAB ID 2}{TAB NUM}
+        http://yoursite.com/tabs.html#demoTab2|demoTwo3
 
 For any support
 ===============
