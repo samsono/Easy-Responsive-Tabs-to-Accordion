@@ -55,8 +55,10 @@
                 var itemCount = 0;
                 $respTabs.find('.resp-accordion').each(function () {
                     $tabItemh2 = $(this);
-                    var innertext = $respTabs.find('.resp-tab-item:eq(' + itemCount + ')').html();
-                    $respTabs.find('.resp-accordion:eq(' + itemCount + ')').append(innertext);
+                    var $tabItem = $respTabs.find('.resp-tab-item:eq(' + itemCount + ')');
+                    var $accItem = $respTabs.find('.resp-accordion:eq(' + itemCount + ')');
+                    $accItem.append($tabItem.html());
+                    $accItem.data($tabItem.data());
                     $tabItemh2.attr('aria-controls', 'tab_item-' + (itemCount));
                     itemCount++;
                 });
