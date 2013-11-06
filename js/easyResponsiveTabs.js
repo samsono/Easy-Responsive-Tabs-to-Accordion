@@ -88,9 +88,9 @@
 
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
-                    var $currentTab = $(this);
-                    $currentTab.click(function () {
+                    $currentTab.bind("click activate", function () {
 
+                        var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
                         if ($currentTab.hasClass('resp-accordion') && $currentTab.hasClass('resp-tab-active')) {
@@ -113,10 +113,12 @@
                         //Trigger tab activation event
                         $currentTab.trigger('tabactivate', $currentTab);
                     });
-                    //Window resize function                   
-                    $(window).resize(function () {
-                        $respTabs.find('.resp-accordion-closed').removeAttr('style');
-                    });
+                    
+                });
+                
+                //Window resize function                   
+                $(window).resize(function () {
+                    $respTabs.find('.resp-accordion-closed').removeAttr('style');
                 });
             });
         }
