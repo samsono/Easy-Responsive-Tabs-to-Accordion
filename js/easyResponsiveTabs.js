@@ -111,8 +111,10 @@
 
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
-                    $currentTab.bind("click activate", function () {
-
+                   
+                    var $currentTab = $(this);
+                    $currentTab.click(function () {
+                        
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
