@@ -1,0 +1,74 @@
+@if $use-accordion == true{
+// Easy Responsive Tabs to Accordion
+
+/*-----------Accordion Styles-----------*/
+
+h2.resp-accordion {
+	@include common-border;
+    cursor: pointer;
+    padding: 5px;
+    display: none;
+    font-weight: $tab-font-weight;
+    font-size: $tab-font-size;
+    border-top: none;
+    margin: 0px;
+    padding: 10px 15px;
+    @include breakpoint(mq-breakpoint){
+		display: block;
+	}
+
+    &:first-child {
+    	border-top: $border-width $border-type $border-color !important;
+	}
+}
+
+h2.resp-tab-active {
+    background: $brand-sec-color !important;
+    border-bottom: none !important;
+    margin-bottom: 0px !important;
+    padding: 10px 15px !important;
+}
+
+.resp-easy-accordion {
+
+	h2.resp-accordion {
+        display: block;
+	}
+
+	.resp-tab-content {
+		@include common-border;
+
+	    &:last-child {
+	    	border-bottom: $border-width $border-type $border-color !important;
+		}
+	}
+}
+
+.resp-accordion-active {
+    display: block;
+}
+
+.resp-accordion-closed {
+	@include breakpoint(mq-breakpoint){
+		display: none !important;
+	}
+}
+
+.resp-arrow {
+    width: 0;
+    height: 0;
+    float: right;
+    margin-top: 3px;
+    border-left: ($arrow-size / 2) solid transparent;
+    border-right: ($arrow-size / 2) solid transparent;
+    border-top: $arrow-size solid $brand-pri-color;
+}
+
+h2.resp-tab-active span.resp-arrow {
+    border: none;
+    border-left: ($arrow-size / 2) solid transparent;
+    border-right: ($arrow-size / 2) solid transparent;
+    border-bottom: $arrow-size solid darken($brand-pri-color, 20%);
+}
+
+} // end if

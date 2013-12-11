@@ -1,0 +1,15 @@
+// Easy Responsive Tabs to Accordion
+//
+// ====== Utilities ======
+
+// Sets common border properties
+@mixin common-border{
+	border: $border-width $border-type $border-color; 
+}
+
+// Constructs media query for respective selector
+@mixin breakpoint($point) {
+	@if $point == mq-breakpoint { // when screen size is greater than default mobile to tablet portrait
+		@media ($mq-type: $mq-breakpoint) { @content; }
+	}
+}

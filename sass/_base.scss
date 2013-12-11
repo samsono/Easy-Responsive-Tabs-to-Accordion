@@ -1,0 +1,40 @@
+// Easy Responsive Tabs to Accordion
+
+/*-----------Easy Responsive Tab Base Styles-----------*/
+
+.resp-tabs-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	@include breakpoint(mq-breakpoint){
+		display: none;
+	}
+
+    > li {
+    	font-weight: $tab-font-weight;
+	    font-size: $tab-font-size;
+	    margin: 0;
+	    cursor: pointer;
+    }
+}
+
+.resp-tabs-container {
+	padding: 0;
+    background-color: $tab-container-color;
+    clear: left;
+}
+
+.resp-tab-content {
+    display: none;
+    padding: $content-padding;
+}
+
+.resp-content-active, .resp-tab-content-active{
+    display: block;
+}
+
+.resp-jfit {
+    width: 100%;
+    margin: 0;
+}
+

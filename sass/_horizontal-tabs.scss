@@ -1,0 +1,28 @@
+@if $use-horizontal-tabs == true{
+// Easy Responsive Tabs to Accordion
+
+/*-----------Horizontal tabs-----------*/
+
+.resp-tabs-list {
+
+    > li {
+    	display: inline-block;
+	    padding: 13px 15px;
+	    float: left;
+    }
+}
+
+.resp-tab-active {
+    @include common-border;
+    border-bottom: none;
+    margin-bottom: -1px !important;
+    padding: 12px 14px 14px 14px !important;
+    border-bottom: none;
+    background-color: $active-tab-color;
+}
+
+.resp-tab-content {
+	@include common-border;
+}
+
+} // end if
