@@ -55,6 +55,8 @@ How to use
             width: 'auto', //auto or any custom width
             fit: true,   // 100% fits in a container
             closed: false, // Close the panels on start, the options 'accordion' and 'tabs' keep them closed in there respective view types
+            auto: true, //Automate the change of tabs defaults to false
+            autoInterval: 6000, //Interval for Automation of change of tabs
             activate: function() {}  // Callback function, gets called if tab is switched
         });
 
