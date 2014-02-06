@@ -4,6 +4,7 @@
     background: #f5f5f5;
     font-family: 'Segoe UI';
 }
+
 ul.resp-tabs-list, p {
     margin: 0px;
     padding: 0px;
@@ -75,6 +76,7 @@ h2.resp-tab-title:last-child {
     border-bottom: 12px solid #c1c1c1 !important;
     background: blue;
 }
+
 /*-----------Vertical tabs-----------*/
 .resp-vtabs ul.resp-tabs-list {
     float: left;
@@ -102,6 +104,7 @@ h2.resp-tab-title:last-child {
 
 .resp-vtabs .resp-tab-content {
     border: none;
+    word-wrap: break-word;
 }
 
 .resp-vtabs li.resp-tab-active {
@@ -133,17 +136,19 @@ h2.resp-tab-active span.resp-arrow {
 
 /*-----------Accordion styles-----------*/
 h2.resp-tab-active {
-    background: #DBDBDB !important;
+    background: #DBDBDB;/* !important;*/
 }
-.resp-easy-accordion  h2.resp-accordion {
-        display: block;
+
+.resp-easy-accordion h2.resp-accordion {
+    display: block;
 }
+
 .resp-easy-accordion .resp-tab-content {
     border: 1px solid #c1c1c1;
 }
 
 .resp-easy-accordion .resp-tab-content:last-child {
-    border-bottom: 1px solid #c1c1c1 !important;
+    border-bottom: 1px solid #c1c1c1;/* !important;*/
 }
 
 .resp-jfit {
@@ -156,7 +161,7 @@ h2.resp-tab-active {
 }
 
 h2.resp-accordion:first-child {
-    border-top: 1px solid #c1c1c1 !important;
+    border-top: 1px solid #c1c1c1;/* !important;*/
 }
 
 /*Here your can change the breakpoint to set the accordion, when screen resolution changed*/
@@ -177,12 +182,14 @@ h2.resp-accordion:first-child {
         border: none;
         float: none;
         width: 100%;
-        min-height: initial;
+        min-height: 100px;
         clear: none;
     }
+
     .resp-accordion-closed {
-        display:none !important;
+        display: none !important;
     }
+
     .resp-vtabs .resp-tab-content:last-child {
         border-bottom: 1px solid #c1c1c1 !important;
     }

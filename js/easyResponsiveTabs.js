@@ -1,6 +1,5 @@
-// Easy Responsive Tabs Plugin - Supporting nested Tabs
+// Easy Responsive Tabs Plugin
 // Author: Samson.Onna <Email : samson3d@gmail.com>
-// Modified: Michael Kabugi <Email : michael.kabugi@gmail.com>
 (function ($) {
     $.fn.extend({
         easyResponsiveTabs: function (options) {
@@ -62,9 +61,15 @@
                     }
                 }
 
+
                 //Assigning the h2 markup to accordion title
                 var $tabItemh2;
-                $respTabs.find('.resp-tab-content.' + options.tabidentify).before("<h2 class='resp-accordion' role='tab'><span class='resp-arrow'></span></h2>");
+                $respTabs.find('.resp-tab-content.' + options.tabidentify).before("<h2 class='resp-accordion " + options.tabidentify + "' role='tab'><span class='resp-arrow'></span></h2>");
+
+                $respTabs.find('.resp-tab-content.' + options.tabidentify).prev("h2").css({
+                    'background-color': options.inactive_bg,
+                    'border-color': options.active_border_color
+                });
 
                 var itemCount = 0;
                 $respTabs.find('.resp-accordion').each(function () {
@@ -93,7 +98,9 @@
                     var tabcount = 0;
                     $respTabs.find('.resp-tab-content.' + options.tabidentify).each(function () {
                         $tabContent = $(this);
-                        $tabContent.attr('aria-labelledby', options.tabidentify + '_tab_item-' + (tabcount));
+                        $tabContent.attr('aria-labelledby', options.tabidentify + '_tab_item-' + (tabcount)).css({
+                            'border-color': options.active_border_color
+                        });
                         tabcount++;
                     });
                     count++;
@@ -119,12 +126,18 @@
 
                 //keep closed if option = 'closed' or option is 'accordion' and the element is in accordion mode
                 if (options.closed !== true && !(options.closed === 'accordion' && !$respTabsList.is(':visible')) && !(options.closed === 'tabs' && $respTabsList.is(':visible'))) {
-                    $($respTabs.find('.resp-accordion.' + options.tabidentify)[tabNum]).addClass('resp-tab-active');
+                    $($respTabs.find('.resp-accordion.' + options.tabidentify)[tabNum]).addClass('resp-tab-active').css({
+                        'background-color': options.activetab_bg + ' !important',
+                        'border-color': options.active_border_color,
+                        'background': 'none'
+                    });
+
+
                     $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-tab-content-active').addClass(options.tabidentify).attr('style', 'display:block');
                 }
                 //assign proper classes for when tabs mode is activated before making a selection in accordion mode
                 else {
-                    $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-tab-content-active resp-accordion-closed')
+                    $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-accordion-closed'); //removed resp-tab-content-active
                 }
 
                 //Tab Click action function
@@ -159,10 +172,13 @@
 
                             $respTabs.find('.resp-tab-content[aria-labelledby = ' + $tabAria + '].' + options.tabidentify).slideDown().addClass('resp-tab-content-active');
                         } else {
+                            console.log('here');
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
                                 'background-color': options.inactive_bg,
                                 'border-color': 'none'
                             });
+
+
                             $respTabs.find('.resp-tab-content-active.' + options.tabidentify).removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');
 
 
