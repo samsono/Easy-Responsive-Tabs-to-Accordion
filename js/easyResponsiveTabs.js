@@ -29,13 +29,16 @@
                 var $respTabs = $(this);
                 var $respTabsList = $respTabs.find('ul.resp-tabs-list');
                 var respTabsId = $respTabs.attr('id');
-                $respTabs.find('ul.resp-tabs-list li').addClass('resp-tab-item');
+                var $firstul =$respTabs.find('ul.resp-tabs-list:eq(0)');
+                $firstul.children('li').addClass('resp-tab-item');
+//                $respTabs.find('ul.resp-tabs-list li').addClass('resp-tab-item');
                 $respTabs.css({
                     'display': 'block',
                     'width': jwidth
                 });
-
-                $respTabs.find('.resp-tabs-container > div').addClass('resp-tab-content');
+                var $firstContainer=$respTabs.find('.resp-tabs-container:eq(0)');
+                $firstContainer.children('div').addClass('resp-tab-content');
+//                $respTabs.find('.resp-tabs-container > div').addClass('resp-tab-content');
                 jtab_options();
                 //Properties Function
                 function jtab_options() {
@@ -169,4 +172,3 @@
         }
     });
 })(jQuery);
-
