@@ -18,7 +18,7 @@ Features
 Demo
 ====
 
-http://webtrendset.com/demo/easy-responsive-tabs/Index.html
+http://webthemez.com/demo/easy-responsive-tabs/Index.html
 
 
 How to use
