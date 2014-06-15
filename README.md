@@ -52,9 +52,10 @@ How to use
 
         $("#demoTab").easyResponsiveTabs({
             type: 'default', //Types: default, vertical, accordion           
-            width: 'auto', //auto or any custom width
+            width: 'auto', // auto or any custom width
             fit: true,   // 100% fits in a container
             closed: false, // Close the panels on start, the options 'accordion' and 'tabs' keep them closed in there respective view types
+            headingTag: 'h2', // specify which level of heading to assign to the tab element
             activate: function() {}  // Callback function, gets called if tab is switched
         });
 
