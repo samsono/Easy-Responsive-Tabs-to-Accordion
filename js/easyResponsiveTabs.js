@@ -9,6 +9,7 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
+                headingTag: 'h2',
                 activate: function(){}
             }
             //Variables
@@ -51,18 +52,19 @@
                     }
                 }
 
-                //Assigning the h2 markup to accordion title
-                var $tabItemh2;
-                $respTabs.find('.resp-tab-content').before("<h2 class='resp-accordion' role='tab'><span class='resp-arrow'></span></h2>");
+                //Assigning the heading markup to accordion title
+                var $tabItemHeading,
+                    $tabItemHeadingMarkup = '<' + options.headingTag + ' class="resp-accordion" role="tab"><span class="resp-arrow"></span></' + options.headingTag + '>';
+                $respTabs.find('.resp-tab-content').before($tabItemHeadingMarkup);
 
                 var itemCount = 0;
                 $respTabs.find('.resp-accordion').each(function () {
-                    $tabItemh2 = $(this);
+                    $tabItemHeading = $(this);
                     var $tabItem = $respTabs.find('.resp-tab-item:eq(' + itemCount + ')');
                     var $accItem = $respTabs.find('.resp-accordion:eq(' + itemCount + ')');
                     $accItem.append($tabItem.html());
                     $accItem.data($tabItem.data());
-                    $tabItemh2.attr('aria-controls', 'tab_item-' + (itemCount));
+                    $tabItemHeading.attr('aria-controls', 'tab_item-' + (itemCount));
                     itemCount++;
                 });
 
