@@ -11,6 +11,9 @@
                 closed: false,
                 auto: false,
                 autoInterval: 6000,
+                prev: '',
+                next: '',
+                pause_resume: '',
                 activate: function(){}
             }
             //Variables
@@ -111,12 +114,75 @@
                     $($respTabs.find('.resp-tab-content')[tabNum]).addClass('resp-tab-content-active resp-accordion-closed')
                 }
 
+                //automate
+                var totalTabsList = $respTabsList.find("[role=tab]").length;
+                var lastTabIndex = totalTabsList - 1;
+                var target;
+                var interval;
+                var is_paused = false;
+                function changeTabs(index){
+                    $respTabsList.find("[role=tab]").eq(index).trigger('click', ['is_triggered']);
+                }
+                function intervalFunction(){
+                    target = $respTabsList.find(".resp-tab-active").index();
+                    target === lastTabIndex ? target = 0 : target = target + 1;
+                    changeTabs(target);
+                }
+                if(options.auto === true){
+                    interval = setInterval(intervalFunction, options.autoInterval);
+                    $respTabs.on({
+                        mouseenter: function(){
+                            if(is_paused === false){
+                                clearInterval(interval);
+                            }
+                        },
+                        mouseleave: function(){
+                            if(is_paused !== true){
+                              interval = setInterval(intervalFunction, options.autoInterval);
+                            }
+                        }
+                    })
+                }
+
+                //Navigation
+                if($(options.prev).length > 0){
+                    $(options.prev).on('click', function(e){
+                        e.preventDefault();
+                        target = $respTabsList.find(".resp-tab-active").index();
+                        target === 0 ? target = lastTabIndex : target = target - 1;
+                        changeTabs(target);
+                    });
+                }
+                if($(options.next).length > 0){
+                    $(options.next).on('click', function(e){
+                        e.preventDefault();
+                        target = $respTabsList.find(".resp-tab-active").index();
+                        target === lastTabIndex ? target = 0 : target = target + 1;
+                        changeTabs(target);
+                    });
+                }
+
+                if($(options.pause_resume).length > 0){
+                    $(options.pause_resume).on('click', function(e){
+                        e.preventDefault();
+                        if(is_paused === false){
+                            is_paused = true;
+                            clearInterval(interval);
+                        }
+                        else{
+                            is_paused = false;
+                            interval = setInterval(intervalFunction, options.autoInterval);
+                        }
+                    });
+                }
+
+
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
-                   
+
                     var $currentTab = $(this);
-                    $currentTab.click(function () {
-                        
+                    $currentTab.on('click', function (e, is_triggered) {
+
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
@@ -139,7 +205,12 @@
                         }
                         //Trigger tab activation event
                         $currentTab.trigger('tabactivate', $currentTab);
-                        
+
+                        if(typeof interval !== 'undefined' && typeof is_triggered === 'undefined'){
+                            is_paused = true;
+                            clearInterval(interval);
+                        }
+
                         //Update Browser History
                         if(historyApi) {
                             var currentHash = window.location.hash;
@@ -162,21 +233,6 @@
                     });
                     
                 });
-
-                //automate
-                if(options.auto === true){
-                    var totalTabsList = $respTabsList.find("[role=tab]").length;
-                    var lastTabIndex = totalTabsList - 1;
-                    var target;
-                    function changeTabs(index){
-                      $respTabsList.find("[role=tab]").eq(index).trigger('click');
-                    }
-                    setInterval(function(){
-                      target = $respTabsList.find(".resp-tab-active").index();
-                      target === lastTabIndex ? target = 0 : target = target + 1;
-                      changeTabs(target);
-                    }, options.autoInterval);
-                }
                 
                 //Window resize function                   
                 $(window).resize(function () {
