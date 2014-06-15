@@ -9,6 +9,8 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
+                auto: false,
+                autoInterval: 6000,
                 activate: function(){}
             }
             //Variables
@@ -160,6 +162,21 @@
                     });
                     
                 });
+
+                //automate
+                if(options.auto === true){
+                    var totalTabsList = $respTabsList.find("[role=tab]").length;
+                    var lastTabIndex = totalTabsList - 1;
+                    var target;
+                    function changeTabs(index){
+                      $respTabsList.find("[role=tab]").eq(index).trigger('click');
+                    }
+                    setInterval(function(){
+                      target = $respTabsList.find(".resp-tab-active").index();
+                      target === lastTabIndex ? target = 0 : target = target + 1;
+                      changeTabs(target);
+                    }, options.autoInterval);
+                }
                 
                 //Window resize function                   
                 $(window).resize(function () {
