@@ -85,7 +85,7 @@
         <br />
         <!--vertical Tabs-->
         <a href="#" id="prev_tab">Prev</a>
-        <a href="#" id="pause_resume_tab">Pause/Resume</a>
+        <a href="#" id="pause_resume_tab">Pause/Play</a>
         <a href="#" id="next_tab">Next</a>
 
         <div id="verticalTab">
@@ -184,6 +184,17 @@
             next: '#next_tab',
             prev: '#prev_tab',
             pause_resume: '#pause_resume_tab'
+        });
+        //custom events on pause resume buttons
+        $('#pause_resume_tab').on('paused', function(e, is_tab_clicked){
+            if(typeof is_tab_clicked != 'undefined'){
+                //this arguments can be checked for when tab is paused by clicking tab
+            }
+            $(this).text('Resume');
+        });
+
+        $('#pause_resume_tab').on('resumed', function(e, is_tab_clicked){
+            $(this).text('Pause');
         });
     });
 </script>

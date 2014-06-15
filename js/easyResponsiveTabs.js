@@ -151,6 +151,7 @@
                         target = $respTabsList.find(".resp-tab-active").index();
                         target === 0 ? target = lastTabIndex : target = target - 1;
                         changeTabs(target);
+                        $respTabs.trigger('prev_item');
                     });
                 }
                 if($(options.next).length > 0){
@@ -159,6 +160,7 @@
                         target = $respTabsList.find(".resp-tab-active").index();
                         target === lastTabIndex ? target = 0 : target = target + 1;
                         changeTabs(target);
+                        $respTabs.trigger('next_item');
                     });
                 }
 
@@ -168,10 +170,12 @@
                         if(is_paused === false){
                             is_paused = true;
                             clearInterval(interval);
+                            $(options.pause_resume).trigger('paused');
                         }
                         else{
                             is_paused = false;
                             interval = setInterval(intervalFunction, options.autoInterval);
+                            $(options.pause_resume).trigger('resumed');
                         }
                     });
                 }
@@ -209,6 +213,9 @@
                         if(typeof interval !== 'undefined' && typeof is_triggered === 'undefined'){
                             is_paused = true;
                             clearInterval(interval);
+                            if($(options.pause_resume).length > 0){
+                              $(options.pause_resume).trigger('paused', ['is_tab_clicked']);
+                            }
                         }
 
                         //Update Browser History
