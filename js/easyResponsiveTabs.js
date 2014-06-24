@@ -9,7 +9,8 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
-                activate: function(){}
+                activate: function(){},
+				tabID:[]
             }
             //Variables
             var options = $.extend(defaults, options);            
@@ -29,13 +30,14 @@
                 var $respTabs = $(this);
                 var $respTabsList = $respTabs.find('ul.resp-tabs-list');
                 var respTabsId = $respTabs.attr('id');
-                $respTabs.find('ul.resp-tabs-list li').addClass('resp-tab-item');
+				var $firstul =$respTabs.find('ul.resp-tabs-list:eq(0)');
+                $firstul.children('li').addClass('resp-tab-item');
                 $respTabs.css({
                     'display': 'block',
                     'width': jwidth
                 });
-
-                $respTabs.find('.resp-tabs-container > div').addClass('resp-tab-content');
+				var $firstContainer=$respTabs.find('.resp-tabs-container:eq(0)');
+                $firstContainer.children('div').addClass('resp-tab-content');
                 jtab_options();
                 //Properties Function
                 function jtab_options() {
@@ -53,8 +55,12 @@
 
                 //Assigning the h2 markup to accordion title
                 var $tabItemh2;
-                $respTabs.find('.resp-tab-content').before("<h2 class='resp-accordion' role='tab'><span class='resp-arrow'></span></h2>");
-
+                $respTabs.find('.resp-tab-content').each(function(index){
+					var id=(typeof options.tabID[index] !== "undefined")?"id='"+options.tabID[index]+"'":"";
+					
+					$(this).before("<h2 class='resp-accordion' role='tab' "+id+"><div class='closeIcon'><span class='resp-arrow'></span></div></h2>");
+				});
+				
                 var itemCount = 0;
                 $respTabs.find('.resp-accordion').each(function () {
                     $tabItemh2 = $(this);
@@ -169,4 +175,3 @@
         }
     });
 })(jQuery);
-
