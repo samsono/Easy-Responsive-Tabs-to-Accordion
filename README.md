@@ -55,6 +55,7 @@ How to use
             width: 'auto', //auto or any custom width
             fit: true,   // 100% fits in a container
             closed: false, // Close the panels on start, the options 'accordion' and 'tabs' keep them closed in there respective view types
+            history: true, // Activate / Deactivate the history feature. History is activated by default.
             activate: function() {}  // Callback function, gets called if tab is switched
         });
 

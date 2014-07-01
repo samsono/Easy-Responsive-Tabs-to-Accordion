@@ -9,7 +9,13 @@
     <script src="js/jquery-1.6.3.min.js"></script>
     <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
     <style type="text/css">
-        .demo {
+         body {
+            margin: 0px;
+            padding: 0px;
+            background: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+       .demo {
             width: 980px;
             margin: 0px auto;
         }
@@ -144,6 +150,7 @@
             type: 'default', //Types: default, vertical, accordion           
             width: 'auto', //auto or any custom width
             fit: true,   // 100% fits in a container
+            history: true, // Activate - Deactivate the history feature. History is activated by default.
             activate: function() {} // Callback function, gets called if tab is switched
         });
         </code></pre>
