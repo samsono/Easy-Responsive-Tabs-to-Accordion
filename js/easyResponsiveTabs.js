@@ -134,9 +134,9 @@
                             $respTabs.find('> div > .resp-tab-content[aria-labelledby = ' + $tabAria + ']').slideDown().addClass('resp-tab-content-active');
                         } else {
                             $respTabs.find('> ul .resp-tab-active').removeClass('resp-tab-active');
-                            $respTabs.find('> div .resp-tab-content-active').removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');
+                            $respTabs.find('> div > .resp-tab-content-active').removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');
                             $respTabs.find("> ul [aria-controls=" + $tabAria + "]").addClass('resp-tab-active');
-                            $respTabs.find('> div .resp-tab-content[aria-labelledby = ' + $tabAria + ']').addClass('resp-tab-content-active').attr('style', 'display:block');
+                            $respTabs.find('> div > .resp-tab-content[aria-labelledby = ' + $tabAria + ']').addClass('resp-tab-content-active').attr('style', 'display:block');
                         }
                         //Trigger tab activation event
                         $currentTab.trigger('tabactivate', $currentTab);
