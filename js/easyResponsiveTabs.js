@@ -113,6 +113,7 @@
                 $respTabs.find("[role=tab]").each(function () {
                    
                     var $currentTab = $(this);
+                    var $respTabs = $currentTab.closest('div');  //  Fast fix (hack) for support nested tabs
                     $currentTab.click(function () {
                         
                         var $currentTab = $(this);
