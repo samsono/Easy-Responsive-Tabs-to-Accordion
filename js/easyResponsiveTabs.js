@@ -9,13 +9,14 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
+                useHash: true,
                 activate: function(){}
             }
             //Variables
             var options = $.extend(defaults, options);            
-            var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical', accord = 'accordion';
+            var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, useHash = opt.useHash, vtabs = 'vertical', accord = 'accordion';
             var hash = window.location.hash;
-            var historyApi = !!(window.history && history.replaceState);
+            var historyApi = !!(useHash && window.history && history.replaceState);
             
             //Events
             $(this).bind('tabactivate', function(e, currentTab) {
