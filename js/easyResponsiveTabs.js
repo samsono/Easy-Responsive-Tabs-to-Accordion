@@ -1,14 +1,5 @@
-// This is a fork of the Easy Responsive Tabs Plugin
-// Fork author: Ben Griffiths
-/*
- * Added in this fork:
- * 
- * (1) Added updateHistory as a boolean option, and turned off history API and URL hash manipulation by default
- * 
- */
-
-// Original author: Samson.Onna <Email : samson3d@gmail.com>
-
+// Easy Responsive Tabs Plugin
+// Author: Samson.Onna <Email : samson3d@gmail.com>
 (function ($) {
     $.fn.extend({
         easyResponsiveTabs: function (options) {
@@ -18,15 +9,14 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
-                updateHistory: false, //Do not update browser history and URL hash by default
                 activate: function(){}
             }
             //Variables
-            var options = $.extend(defaults, options);
+            var options = $.extend(defaults, options);            
             var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical', accord = 'accordion';
             var hash = window.location.hash;
             var historyApi = !!(window.history && history.replaceState);
-
+            
             //Events
             $(this).bind('tabactivate', function(e, currentTab) {
                 if(typeof options.activate === 'function') {
@@ -93,7 +83,7 @@
                     });
                     count++;
                 });
-
+                
                 // Show correct content area
                 var tabNum = 0;
                 if(hash!='') {
@@ -110,21 +100,21 @@
                 $($respTabs.find('.resp-tab-item')[tabNum]).addClass('resp-tab-active');
 
                 //keep closed if option = 'closed' or option is 'accordion' and the element is in accordion mode
-                if(options.closed !== true && !(options.closed === 'accordion' && !$respTabsList.is(':visible')) && !(options.closed === 'tabs' && $respTabsList.is(':visible'))) {
+                if(options.closed !== true && !(options.closed === 'accordion' && !$respTabsList.is(':visible')) && !(options.closed === 'tabs' && $respTabsList.is(':visible'))) {                  
                     $($respTabs.find('.resp-accordion')[tabNum]).addClass('resp-tab-active');
                     $($respTabs.find('.resp-tab-content')[tabNum]).addClass('resp-tab-content-active').attr('style', 'display:block');
                 }
-                    //assign proper classes for when tabs mode is activated before making a selection in accordion mode
+                //assign proper classes for when tabs mode is activated before making a selection in accordion mode
                 else {
                     $($respTabs.find('.resp-tab-content')[tabNum]).addClass('resp-tab-content-active resp-accordion-closed')
                 }
 
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
-
+                   
                     var $currentTab = $(this);
                     $currentTab.click(function () {
-
+                        
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
 
@@ -147,14 +137,14 @@
                         }
                         //Trigger tab activation event
                         $currentTab.trigger('tabactivate', $currentTab);
-
+                        
                         //Update Browser History
-                        if (options.updateHistory && historyApi) {
+                        if(historyApi) {
                             var currentHash = window.location.hash;
                             var newHash = respTabsId+(parseInt($tabAria.substring(9),10)+1).toString();
                             if (currentHash!="") {
                                 var re = new RegExp(respTabsId+"[0-9]+");
-                                if (currentHash.match(re)!=null) {
+                                if (currentHash.match(re)!=null) {                                    
                                     newHash = currentHash.replace(re,newHash);
                                 }
                                 else {
@@ -164,13 +154,13 @@
                             else {
                                 newHash = '#'+newHash;
                             }
-
+                            
                             history.replaceState(null,null,newHash);
                         }
                     });
-
+                    
                 });
-
+                
                 //Window resize function                   
                 $(window).resize(function () {
                     $respTabs.find('.resp-accordion-closed').removeAttr('style');
