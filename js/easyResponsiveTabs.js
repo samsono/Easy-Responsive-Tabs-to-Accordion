@@ -3,8 +3,8 @@
 /*
  * Added in this fork:
  * 
- * (1) Added updateHistory as a boolean option so that tabs can be used without updating browser history
- * (2) Updated URL hash algorithm to use id on list item if present
+ * (1) Added updateHistory as a boolean option to allow use of history API and URL hash manipulation to be turned off
+ * 
  */
 
 // Original author: Samson.Onna <Email : samson3d@gmail.com>
@@ -78,18 +78,11 @@
 
                 //Assigning the 'aria-controls' to Tab items
                 var count = 0,
-                    $tabContent,
-                    usingIds = false,
-                    $tabItems = $respTabs.find('.resp-tab-item');
-
-                $tabItems.each(function () {
+                    $tabContent;
+                $respTabs.find('.resp-tab-item').each(function () {
                     $tabItem = $(this);
                     $tabItem.attr('aria-controls', 'tab_item-' + (count));
                     $tabItem.attr('role', 'tab');
-
-                    if ($(this).attr('id')) {
-                        usingIds = true;
-                    }
 
                     //Assigning the 'aria-labelledby' attr to tab-content
                     var tabcount = 0;
@@ -100,18 +93,6 @@
                     });
                     count++;
                 });
-
-                //If some but not all of the tab items have an Id, add any missing Ids,
-                //which we will use to identify tabs when updating the browser history
-                if (usingIds) {
-                    count = 1;
-                    $tabItems.each(function () {
-                        if (!$(this).attr('id')) {
-                            $(this).attr('id', respTabsId + count);
-                        }
-                        count++;
-                    });
-                }
 
                 // Show correct content area
                 var tabNum = 0;
@@ -169,51 +150,22 @@
 
                         //Update Browser History
                         if (options.updateHistory && historyApi) {
-
-                            var $tabHeader = $respTabs.find('.resp-tab-item[aria-controls=' + $tabAria + ']'),
-                                currentHash = window.location.hash,
-                                updateHashBasedOnIdOfAnotherTab = function (newHashFragment) {
-                                    var updatedHash = null;
-                                    $.each($tabItems, function () {
-                                        var thisId;
-                                        if (!updatedHash) {
-                                            thisId = $(this).attr('id');
-                                            if (currentHash.indexOf('#' + thisId) !== -1 || currentHash.indexOf('|' + thisId) !== -1) {
-                                                updatedHash = currentHash.replace(thisId, newHashFragment);
-                                            }
-                                        }
-                                    });
-                                    return updatedHash;
-                                },
-                                getNewHashBasedOnTabNumber = function () {
-                                    var hash = respTabsId + (parseInt($tabAria.substring(9), 10) + 1).toString();
-                                    if (currentHash != "") {
-                                        var re = new RegExp(respTabsId + "[0-9]+");
-                                        if (currentHash.match(re) != null) {
-                                            return currentHash.replace(re, hash);
-                                        }
-                                        else {
-                                            return updateHashBasedOnIdOfAnotherTab(hash) || (currentHash + '|' + hash);
-                                        }
-                                    }
-                                    else {
-                                        return '#' + hash;
-                                    }
-                                },
-                                getNewHashBasedOnTabItemId = function () {
-                                    var id = $tabHeader.attr('id');
-                                    if (id) {
-                                        return updateHashBasedOnIdOfAnotherTab(id) || id;
-                                    }
-                                    return false;
-                                },
-                                newHash = getNewHashBasedOnTabItemId() || getNewHashBasedOnTabNumber();
-
-                            if (newHash.indexOf('#') !== 0) {
-                                newHash = '#' + newHash;
+                            var currentHash = window.location.hash;
+                            var newHash = respTabsId+(parseInt($tabAria.substring(9),10)+1).toString();
+                            if (currentHash!="") {
+                                var re = new RegExp(respTabsId+"[0-9]+");
+                                if (currentHash.match(re)!=null) {
+                                    newHash = currentHash.replace(re,newHash);
+                                }
+                                else {
+                                    newHash = currentHash+"|"+newHash;
+                                }
+                            }
+                            else {
+                                newHash = '#'+newHash;
                             }
 
-                            history.replaceState(null, null, newHash);
+                            history.replaceState(null,null,newHash);
                         }
                     });
 
