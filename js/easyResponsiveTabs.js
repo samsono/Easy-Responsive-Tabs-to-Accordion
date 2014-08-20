@@ -9,6 +9,7 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
+                updateHistory: true, // update the URL hash and browser history when tab is selected
                 activate: function(){}
             }
             //Variables
@@ -139,7 +140,7 @@
                         $currentTab.trigger('tabactivate', $currentTab);
                         
                         //Update Browser History
-                        if(historyApi) {
+                        if(options.updateHistory && historyApi) {
                             var currentHash = window.location.hash;
                             var newHash = respTabsId+(parseInt($tabAria.substring(9),10)+1).toString();
                             if (currentHash!="") {
