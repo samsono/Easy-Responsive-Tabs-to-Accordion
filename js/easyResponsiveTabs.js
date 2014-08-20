@@ -1,9 +1,9 @@
 // This is a fork of the Easy Responsive Tabs Plugin
-
+// Fork author: Ben Griffiths
 /*
  * Added in this fork:
  * 
- * (1) Added updateHistory as a boolean option to allow use of history API and URL hash manipulation to be turned off
+ * (1) Added updateHistory as a boolean option, and turned off history API and URL hash manipulation by default
  * 
  */
 
@@ -18,7 +18,7 @@
                 width: 'auto',
                 fit: true,
                 closed: false,
-                updateHistory: true,
+                updateHistory: false, //Do not update browser history and URL hash by default
                 activate: function(){}
             }
             //Variables
