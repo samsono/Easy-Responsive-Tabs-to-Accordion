@@ -34,7 +34,7 @@ How to use
             <ul class="resp-tabs-list">
                 <li> .... </li>
                 <li> .... </li>
-                <li> .... </li>
+                <li id="ThisTabHasACustomId"> .... </li>
             </ul> 
 
             <div class="resp-tabs-container">                                                        
@@ -55,6 +55,7 @@ How to use
             width: 'auto', //auto or any custom width
             fit: true,   // 100% fits in a container
             closed: false, // Close the panels on start, the options 'accordion' and 'tabs' keep them closed in there respective view types
+            updateHistory: true, // supporting browsers will update browser history and URL hash with the selected tab (this is the default)
             activate: function() {}  // Callback function, gets called if tab is switched
         });
 
