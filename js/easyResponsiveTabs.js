@@ -145,17 +145,18 @@
                             if (currentHash!="") {
                                 var re = new RegExp(respTabsId+"[0-9]+");
                                 if (currentHash.match(re)!=null) {                                    
-                                    newHash = currentHash.replace(re,newHash);
+                                    newHash = window.location.href.replace(currentHash,'')+currentHash.replace(re,newHash);
                                 }
                                 else {
                                     newHash = currentHash+"|"+newHash;
                                 }
                             }
                             else {
-                                newHash = '#'+newHash;
+                                newHash = window.location.href+'#'+newHash;
                             }
                             
                             history.replaceState(null,null,newHash);
+                            console.log(window.location.hash);
                         }
                     });
                     
@@ -169,4 +170,3 @@
         }
     });
 })(jQuery);
-
