@@ -45,7 +45,7 @@ How to use
 
 => Here is the Markup for Tabs structure (nested tabs):
 
-  <div id="ParentTab">          
+        <div id="ParentTab">          
         <ul class="resp-tabs-list tab_identifier_parent">
             <li> .... </li>
             <li> .... </li>
