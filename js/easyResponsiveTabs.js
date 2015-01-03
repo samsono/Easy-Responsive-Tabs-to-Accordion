@@ -138,6 +138,9 @@
                    // $($respTabs.find('.resp-tab-content.' + options.tabidentify)[tabNum]).addClass('resp-accordion-closed'); //removed resp-tab-content-active
                 }
 
+                //fire tabactivate event after set active tab
+                $($respTabs.find('.resp-tab-item')[tabNum]).trigger('tabactivate');
+
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
 
