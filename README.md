@@ -93,6 +93,7 @@ How to use
             activetab_bg: '#B5AC5F', // background color for active tabs in this group
             inactive_bg: '#E0D78C', // background color for inactive tabs in this group
             active_border_color: '#9C905C', // border color for active tabs heads in this group
+            slidespeed:'slow', // compatible with jQuery duration for .slideDown and .slideUp
             active_content_border_color: '#9C905C' // border color for active tabs contect in this group so that it matches the tab head border
         });
 
