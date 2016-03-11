@@ -85,7 +85,7 @@
                 var count = 0,
                     $tabContent;
                 $respTabs.find('.resp-tab-item').each(function () {
-                    $tabItem = $(this);
+                    var $tabItem = $(this);
                     $tabItem.attr('aria-controls', options.tabidentify + '_tab_item-' + (count));
                     $tabItem.attr('role', 'tab');
                     $tabItem.css({
