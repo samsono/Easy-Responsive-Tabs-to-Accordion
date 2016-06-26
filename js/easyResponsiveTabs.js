@@ -197,7 +197,7 @@
                                 newHash = '#' + newHash;
                             }
 
-                            history.replaceState(null, null, newHash);
+                            history.replaceState(null, '', newHash);
                         }
                     });
 
