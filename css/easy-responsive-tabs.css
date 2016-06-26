@@ -1,12 +1,12 @@
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background: #f5f5f5;
     font-family: 'Segoe UI';
 }
 ul.resp-tabs-list, p {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .resp-tabs-list li {
@@ -21,7 +21,7 @@ ul.resp-tabs-list, p {
 }
 
 .resp-tabs-container {
-    padding: 0px;
+    padding: 0;
     background-color: #fff;
     clear: left;
 }
@@ -60,14 +60,14 @@ h2.resp-accordion {
 h2.resp-accordion {
     font-size: 13px;
     border: 1px solid #c1c1c1;
-    border-top: 0px solid #c1c1c1;
-    margin: 0px;
+    border-top: 0 solid #c1c1c1;
+    margin: 0;
     padding: 10px 15px;
 }
 
 h2.resp-tab-active {
-    border-bottom: 0px solid #c1c1c1 !important;
-    margin-bottom: 0px !important;
+    border-bottom: 0 solid #c1c1c1 !important;
+    margin-bottom: 0 !important;
     padding: 10px 15px !important;
 }
 
@@ -90,7 +90,7 @@ h2.resp-tab-title:last-child {
 }
 
 .resp-vtabs .resp-tabs-container {
-    padding: 0px;
+    padding: 0;
     background-color: #fff;
     border: 1px solid #c1c1c1;
     float: left;
@@ -148,7 +148,7 @@ h2.resp-tab-active {
 
 .resp-jfit {
     width: 100%;
-    margin: 0px;
+    margin: 0;
 }
 
 .resp-tab-content-active {
